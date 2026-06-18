@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Organisation Chart — Domaine Agrumia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Mulish:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F3F4ED; --surface:#FBFBF6; --ink:#1F261E; --ink-soft:#39402F;
+    --muted:#6B7264; --hair:#E1E2D6; --hair-strong:#D2D3C4;
+    --grove:#35513A; --grove-deep:#263C2B; --citrus:#CC6B2C; --citrus-text:#9E4E1C;
+    --clay:#A8472E; --clay-text:#8E3A24; --ochre:#B5852C; --ochre-text:#876019;
+    --sage:#6E7A66; --sage-text:#566049; --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--bg);color:var(--ink-soft);
+    font-family:"Mulish",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  @media (max-width:600px){ .wrap{padding:0 18px;} }
+  h1,h2,h3{font-family:"Spectral",Georgia,serif;color:var(--ink);font-weight:500;}
+  a{color:var(--grove);} :focus-visible{outline:2px solid var(--citrus);outline-offset:3px;}
+
+  .eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.2em;font-weight:800;color:var(--grove);margin:0 0 1rem;display:flex;align-items:center;gap:.7rem;}
+  .eyebrow::after{content:"";height:1px;flex:1;background:var(--hair-strong);}
+
+  /* header */
+  header.top{padding:64px 0 34px;}
+  .top .kick{font-size:.74rem;text-transform:uppercase;letter-spacing:.2em;font-weight:800;color:var(--muted);margin-bottom:1.3rem;display:flex;align-items:center;gap:.6rem;}
+  .top .kick svg{flex:0 0 auto;}
+  .top h1{font-size:clamp(2.1rem,5vw,3.4rem);line-height:1.05;letter-spacing:-.01em;margin:0 0 .9rem;max-width:20ch;}
+  .top p.sub{font-size:1.05rem;max-width:62ch;color:var(--ink-soft);margin:0;}
+
+  /* legend */
+  .legend{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:30px;padding-top:22px;border-top:1px solid var(--hair-strong);}
+  .lg{display:inline-flex;align-items:center;gap:9px;font-size:.8rem;color:var(--ink-soft);font-weight:600;}
+  .sw{width:24px;height:15px;border-radius:3px;flex:0 0 auto;background:var(--surface);}
+  .sw.emp{border:1.5px solid var(--grove);}
+  .sw.prest{border:1.5px dashed var(--ink-soft);}
+  .sw.plan{border:1.5px dashed var(--ochre);background:rgba(181,133,44,.08);}
+  .sw.open{border:1.5px dotted var(--citrus);background:rgba(204,107,44,.08);}
+  .sw.ext{border:1.5px solid var(--sage);background:rgba(110,122,102,.1);}
+
+  /* pillar strip */
+  .pillarstrip{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--hair-strong);border-radius:4px;overflow:hidden;background:var(--surface);margin:14px 0 0;}
+  @media (max-width:760px){ .pillarstrip{grid-template-columns:1fr 1fr;} }
+  @media (max-width:430px){ .pillarstrip{grid-template-columns:1fr;} }
+  .ps{padding:18px 20px;border-right:1px solid var(--hair);}
+  .pillarstrip .ps:last-child{border-right:none;}
+  @media (max-width:760px){ .pillarstrip .ps:nth-child(2){border-right:none;} .ps{border-bottom:1px solid var(--hair);} .pillarstrip .ps:nth-last-child(-n+1){border-bottom:none;} }
+  .ps .pn{font-family:"Spectral",serif;font-size:1.25rem;color:var(--ink);font-weight:500;}
+  .ps .pwho{font-size:.82rem;color:var(--muted);margin:.35rem 0 .6rem;}
+  .stat{display:inline-flex;align-items:center;gap:.45rem;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;}
+  .stat .d{width:8px;height:8px;border-radius:50%;}
+  .stat.ok{color:var(--grove);} .stat.ok .d{background:var(--grove);}
+  .stat.pl{color:var(--ochre-text);} .stat.pl .d{background:var(--ochre);}
+  .ps .flag{display:block;font-size:.72rem;color:var(--citrus-text);font-weight:700;margin-top:.4rem;}
+
+  /* sections */
+  .band{padding:54px 0;border-top:1px solid var(--hair);}
+  .band > .wrap > .eyebrow{margin-bottom:6px;}
+  .band h2{font-size:clamp(1.5rem,3vw,2.1rem);margin:0 0 8px;}
+  .band .intro{max-width:60ch;color:var(--muted);margin:0 0 30px;}
+
+  /* chart top spine */
+  .chart-top{display:flex;flex-direction:column;align-items:center;text-align:center;}
+  .node{background:var(--surface);border:1px solid var(--hair-strong);border-radius:5px;padding:16px 26px;max-width:560px;}
+  .node .r{font-family:"Spectral",serif;font-size:1.12rem;color:var(--ink);font-weight:600;}
+  .node .n{font-size:.95rem;color:var(--grove);font-weight:700;margin-top:.1rem;}
+  .node .s{font-size:.82rem;color:var(--muted);margin-top:.5rem;line-height:1.45;}
+  .node.ceo{border-color:var(--hair-strong);}
+  .node.hub{border:2px solid var(--grove);background:#F4F7F1;padding:20px 30px;}
+  .node.hub .r{color:var(--grove-deep);font-size:1.3rem;}
+  .spine{width:1.5px;height:26px;background:var(--hair-strong);}
+
+  /* reporting rule */
+  .team-rule{position:relative;text-align:center;margin:6px 0 26px;}
+  .team-rule::before{content:"";position:absolute;top:50%;left:0;right:0;height:1px;background:var(--hair-strong);}
+  .team-rule span{position:relative;background:var(--bg);padding:0 16px;font-size:.72rem;text-transform:uppercase;letter-spacing:.13em;font-weight:800;color:var(--grove);}
+
+  /* team grid */
+  .team{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  @media (max-width:880px){ .team{grid-template-columns:1fr 1fr;} }
+  @media (max-width:580px){ .team{grid-template-columns:1fr;} }
+  .ocard{background:var(--surface);border:1px solid var(--hair);border-radius:5px;padding:18px 18px 16px;display:flex;flex-direction:column;}
+  .ocard.is-prestataire{border:1.5px dashed var(--ink-soft);}
+  .ocard.is-planned{border:1.5px dashed var(--ochre);background:rgba(181,133,44,.05);}
+  .ocard.is-open{border:1.5px dotted var(--citrus);background:rgba(204,107,44,.05);}
+  .ochead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+  .ocrole{font-family:"Spectral",serif;font-size:1.12rem;color:var(--ink);font-weight:600;line-height:1.2;}
+  .ocwho{font-size:.86rem;color:var(--grove);font-weight:700;margin-top:.1rem;}
+  .pill{font-size:.64rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;padding:.24rem .5rem;border-radius:3px;white-space:nowrap;border:1px solid transparent;flex:0 0 auto;}
+  .pill.emp{color:var(--grove);background:rgba(53,81,58,.09);}
+  .pill.prest{color:var(--ink-soft);background:rgba(57,64,47,.07);border-color:var(--hair-strong);}
+  .pill.plan{color:var(--ochre-text);background:rgba(181,133,44,.13);}
+  .pill.open{color:var(--citrus-text);background:rgba(204,107,44,.12);}
+  .tag{display:inline-block;font-size:.68rem;font-weight:700;color:var(--muted);letter-spacing:.04em;margin-top:.7rem;padding:.16rem .5rem;border:1px solid var(--hair-strong);border-radius:20px;align-self:flex-start;}
+  .ocnote{font-size:.85rem;color:var(--ink-soft);margin:.7rem 0 0;line-height:1.5;}
+  .ocnote .miniflag{color:var(--citrus-text);font-weight:700;}
+  .subteam{margin-top:auto;padding-top:13px;}
+  .subteam .sl{font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:800;margin-bottom:7px;}
+  .chip{display:inline-flex;align-items:center;gap:7px;font-size:.8rem;color:var(--ink);background:var(--bg);border:1px solid var(--hair);border-radius:4px;padding:7px 11px;font-weight:600;}
+  .chip .ck{width:6px;height:6px;border-radius:50%;background:var(--sage);}
+  .chip.future{color:var(--muted);border-style:dashed;}
+
+  /* external + crosscut */
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media (max-width:740px){ .twocol{grid-template-columns:1fr;} }
+  .ext{background:rgba(110,122,102,.07);border:1.5px solid var(--sage);border-radius:5px;padding:18px 20px;}
+  .ext .xr{font-family:"Spectral",serif;font-size:1.08rem;color:var(--ink);font-weight:600;display:flex;align-items:center;gap:10px;}
+  .ext .xr .xpill{font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--sage-text);background:rgba(110,122,102,.16);padding:.2rem .5rem;border-radius:3px;}
+  .ext p{font-size:.86rem;color:var(--ink-soft);margin:.6rem 0 0;}
+
+  .cc{background:var(--surface);border:1px solid var(--hair);border-left:3px solid var(--grove);border-radius:5px;padding:18px 20px;}
+  .cc.rk{border-left-color:var(--citrus);}
+  .cc h3{font-size:.96rem;margin:0 0 .5rem;font-family:"Mulish",sans-serif;font-weight:800;color:var(--ink);}
+  .cc p{font-size:.86rem;margin:0;color:var(--ink-soft);line-height:1.55;}
+  .cc .openmark{display:inline-block;font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--citrus-text);background:rgba(204,107,44,.12);padding:.16rem .45rem;border-radius:3px;margin-left:8px;}
+
+  footer{border-top:1px solid var(--hair-strong);padding:40px 0 60px;margin-top:18px;color:var(--muted);font-size:.84rem;}
+  footer .fr{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+  footer em{font-style:italic;}
+
+  @media print{
+    body{background:#fff;font-size:11pt;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .band,header.top{padding:16px 0;}
+    .ocard,.node,.ext,.cc,.ps{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="kick">
+      <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10.5" cy="11" r="6.4" fill="#CC6B2C"/><path d="M9.6 5.2c-.2-1.6.7-2.9 2.4-3.4-.1 1.7-.8 2.9-2.4 3.4z" fill="#35513A"/></svg>
+      Domaine Agrumia — Khelidia &nbsp;·&nbsp; Full Operation &nbsp;·&nbsp; June 2026
+    </div>
+    <h1>Organisation Chart</h1>
+    <p class="sub">Revised to integrate Elyssa's feedback: a lean structure for a six-room estate, with finance and HR administration externalised, F&amp;B and marketing run by service providers, and the wellness lead added when that pillar opens. Two roles remain to be assigned, marked in the chart.</p>
+
+    <div class="legend" aria-label="Legend">
+      <span class="lg"><span class="sw emp"></span>Employee</span>
+      <span class="lg"><span class="sw prest"></span>Prestataire de service</span>
+      <span class="lg"><span class="sw plan"></span>Planned · opens Year 2</span>
+      <span class="lg"><span class="sw open"></span>To assign</span>
+      <span class="lg"><span class="sw ext"></span>Off-site / external</span>
+    </div>
+  </div>
+</header>
+
+<!-- pillar coverage -->
+<section aria-label="Pillar coverage">
+  <div class="wrap">
+    <p class="eyebrow">Four pillars — now all covered</p>
+    <div class="pillarstrip">
+      <div class="ps">
+        <div class="pn">Déguster</div>
+        <div class="pwho">Jérôme — F&amp;B</div>
+        <span class="stat ok"><span class="d"></span>Owner in place</span>
+      </div>
+      <div class="ps">
+        <div class="pn">Séjourner</div>
+        <div class="pwho">Elyssa + coordinator · 6 rooms</div>
+        <span class="stat ok"><span class="d"></span>Owner in place</span>
+      </div>
+      <div class="ps">
+        <div class="pn">S'Évader</div>
+        <div class="pwho">Elyssa + Jérôme — delivery</div>
+        <span class="stat ok"><span class="d"></span>Owner in place</span>
+        <span class="flag">Sales pipeline → to assign</span>
+      </div>
+      <div class="ps">
+        <div class="pn">Se Détendre</div>
+        <div class="pwho">Spa &amp; wellness manager</div>
+        <span class="stat pl"><span class="d"></span>Planned · Year 2</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- the chart -->
+<section class="band" aria-label="Reporting structure">
+  <div class="wrap">
+    <div class="chart-top">
+      <div class="node ceo">
+        <div class="r">Propriétaire / CEO</div>
+        <div class="n">Lilia</div>
+        <div class="s">Non-operational. Vision, budgets and major decisions — quarterly validation.</div>
+      </div>
+      <div class="spine"></div>
+      <div class="node hub">
+        <div class="r">Directrice · Offre Expérientielle &amp; Opérations</div>
+        <div class="n">Elyssa</div>
+        <div class="s">Designs and runs the experiences and events herself, while holding overall operational visibility. Validates all people decisions. Operational execution is delegated to the team below.</div>
+      </div>
+      <div class="spine"></div>
+    </div>
+
+    <div class="team-rule"><span>Reporting to &amp; delegated by Elyssa</span></div>
+
+    <div class="team">
+      <!-- F&B -->
+      <div class="ocard is-prestataire">
+        <div class="ochead">
+          <div><div class="ocrole">Responsable F&amp;B</div><div class="ocwho">Jérôme</div></div>
+          <span class="pill prest">Prestataire · contract pending</span>
+        </div>
+        <span class="tag">Déguster</span>
+        <p class="ocnote">Operational F&amp;B as a service provider — not an employee. Contract to be professionalised with Lilia; fold in brand standards, a few service KPIs and termination terms when drafted.</p>
+        <div class="subteam">
+          <div class="sl">Team</div>
+          <span class="chip"><span class="ck"></span>Équipe Cuisine</span>
+        </div>
+      </div>
+
+      <!-- Front office -->
+      <div class="ocard">
+        <div class="ochead">
+          <div><div class="ocrole">Coordinatrice d'Accueil</div></div>
+          <span class="pill emp">Employee</span>
+        </div>
+        <span class="tag">Séjourner · 6 rooms</span>
+        <p class="ocnote">Front office, reservations and the guest journey. Owns day-to-day room operations and revenue management (rates, OTA availability) under Elyssa's validation, and intakes private-event enquiries.</p>
+        <div class="subteam">
+          <div class="sl">Team</div>
+          <span class="chip"><span class="ck"></span>Housekeeping ×2</span>
+        </div>
+      </div>
+
+      <!-- Procurement -->
+      <div class="ocard">
+        <div class="ochead">
+          <div><div class="ocrole">Achats &amp; Stocks</div><div class="ocwho">Aymen</div></div>
+          <span class="pill emp">Employee</span>
+        </div>
+        <p class="ocnote">Procurement, inventory and supplier coordination. Single point of contact to the off-site finance office for invoices and payments. <span class="miniflag">Noted as "head of sales" in your feedback — confirm whether his scope also covers commercial.</span></p>
+      </div>
+
+      <!-- Marketing -->
+      <div class="ocard is-prestataire">
+        <div class="ochead">
+          <div><div class="ocrole">Head of Marketing</div></div>
+          <span class="pill prest">Prestataire / consultant</span>
+        </div>
+        <p class="ocnote">Senior remit — brand, content strategy, press, partnerships and campaigns. Likely a consultant on a service contract.</p>
+        <div class="subteam">
+          <div class="sl">Reports in</div>
+          <span class="chip"><span class="ck"></span>Community Manager — junior</span>
+        </div>
+      </div>
+
+      <!-- Wellness -->
+      <div class="ocard is-planned">
+        <div class="ochead">
+          <div><div class="ocrole">Spa &amp; Wellness Manager</div></div>
+          <span class="pill plan">Planned · ~Year 2</span>
+        </div>
+        <span class="tag">Se Détendre</span>
+        <p class="ocnote">Hired when the wellness pillar opens, roughly a year after the hotel and restaurant. Owns treatments, the spa team, bookings and safety compliance.</p>
+        <div class="subteam">
+          <div class="sl">Future team</div>
+          <span class="chip future"><span class="ck"></span>Équipe Spa</span>
+        </div>
+      </div>
+
+      <!-- Commercial OPEN -->
+      <div class="ocard is-open">
+        <div class="ochead">
+          <div><div class="ocrole">Commercial &amp; Revenue</div></div>
+          <span class="pill open">To assign</span>
+        </div>
+        <p class="ocnote">Not yet allocated. Recommended split — revenue management to the coordinator; the outbound B2B / event &amp; retreat pipeline paired with the marketing consultant, or a commission-based commercial. Elyssa approves rather than executes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- off-site / external -->
+<section class="band" aria-label="Off-site and external">
+  <div class="wrap">
+    <p class="eyebrow">Off-site &amp; external — outside the property</p>
+    <div class="twocol">
+      <div class="ext">
+        <div class="xr">Siège — Finance · Paie · Contrats · Assurances <span class="xpill">Off-site</span></div>
+        <p>The company's existing head office, off property. Handles all invoices, payments, payroll, contracts — and insurance policies. Reached through Aymen as the single liaison.</p>
+      </div>
+      <div class="ext">
+        <div class="xr">La Ferme / The Farm <span class="xpill">Pre-existing</span></div>
+        <p>Already active and separately managed, with its own structure. It provides the estate's agritourism setting but sits outside the hospitality staffing plan, so it is not part of this chart.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- cross-cutting -->
+<section class="band" aria-label="Cross-cutting responsibilities">
+  <div class="wrap">
+    <p class="eyebrow">Cross-cutting</p>
+    <div class="twocol">
+      <div class="cc">
+        <h3>People &amp; scheduling</h3>
+        <p>Elyssa validates all people decisions. Day-to-day scheduling is delegated — kitchen to Jérôme, housekeeping to the coordinator — while payroll and contracts are handled by the siège.</p>
+      </div>
+      <div class="cc rk">
+        <h3>Risk, safety &amp; insurance <span class="openmark">Approach to confirm</span></h3>
+        <p>Recommended: insurance policies via the siège; on-site safety embedded per role — food safety with the kitchen, spa safety with the future spa manager, event &amp; premises safety with the coordinator — all under Elyssa's accountability, logged in one shared incident record.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fr">
+      <span>Open items to confirm: <strong>Commercial &amp; Revenue owner</strong> · <strong>risk / insurance approach</strong> · Aymen's scope</span>
+      <span><em>Domaine Agrumia — Khelidia · Organisation chart · June 2026</em></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
