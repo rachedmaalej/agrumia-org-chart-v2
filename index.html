@@ -128,8 +128,36 @@
   @media print{
     body{background:#fff;font-size:11pt;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
     .band,header.top{padding:16px 0;}
-    .ocard,.node,.ext,.cc,.ps{break-inside:avoid;}
+    .ocard,.node,.ext,.cc,.ps,.inc,.recbox,.salwrap{break-inside:avoid;}
+    .saltable{min-width:0;font-size:9pt;}
   }
+
+  /* compensation table */
+  .salwrap{overflow-x:auto;border:1px solid var(--hair-strong);border-radius:6px;background:var(--surface);}
+  .saltable{width:100%;border-collapse:collapse;min-width:580px;}
+  .saltable th,.saltable td{text-align:left;padding:13px 18px;border-bottom:1px solid var(--hair);font-size:.9rem;vertical-align:top;}
+  .saltable thead th{font-family:"Mulish",sans-serif;font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:800;background:rgba(53,81,58,.05);}
+  .saltable tbody tr:last-child td{border-bottom:none;}
+  .saltable .role{font-weight:600;color:var(--ink);font-family:"Spectral",serif;font-size:1rem;}
+  .saltable .amt{font-weight:700;color:var(--grove-deep);white-space:nowrap;}
+  .saltable .amt.na{color:var(--muted);font-weight:600;font-style:italic;}
+  .saltable .nt{color:var(--ink-soft);}
+  .estbadge{display:inline-block;font-size:.56rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--ochre-text);background:rgba(181,133,44,.13);padding:.1rem .4rem;border-radius:3px;margin-left:6px;}
+
+  /* incentive cards */
+  .inc{background:var(--surface);border:1px solid var(--hair);border-radius:6px;padding:22px 24px;margin-bottom:16px;border-top:3px solid var(--grove);}
+  .inchead{display:flex;align-items:baseline;gap:14px;margin-bottom:2px;}
+  .incletter{font-family:"Spectral",serif;font-size:1.7rem;font-weight:600;color:var(--citrus);line-height:1;}
+  .inctitle{font-family:"Spectral",serif;font-size:1.3rem;color:var(--ink);font-weight:600;}
+  .incidea{font-size:.95rem;color:var(--grove-deep);font-style:italic;margin:.1rem 0 .8rem;}
+  .incrow{display:grid;grid-template-columns:128px 1fr;gap:4px 16px;font-size:.9rem;padding:8px 0;border-top:1px solid var(--hair);}
+  .incrow .k{font-size:.64rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:800;padding-top:3px;}
+  .incrow .v{color:var(--ink-soft);}
+  .incrow.tradeoff .v{color:var(--clay-text);}
+  @media (max-width:560px){ .incrow{grid-template-columns:1fr;gap:2px;} }
+  .recbox{background:#F4F7F1;border:1.5px solid var(--grove);border-radius:6px;padding:22px 24px;margin-top:8px;}
+  .recbox h3{margin:0 0 .5rem;font-family:"Spectral",serif;font-size:1.2rem;color:var(--grove-deep);}
+  .recbox p{margin:0;font-size:.95rem;color:var(--ink-soft);}
 </style>
 </head>
 <body>
@@ -301,6 +329,89 @@
         <p>Covered at the insurance level through policies, and operationally by meeting the required standards and protocols in the kitchen and the rooms — the compliance that allows guests to stay overnight.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- compensation -->
+<section class="band" aria-label="Compensation benchmarks">
+  <div class="wrap">
+    <p class="eyebrow">Compensation — Tunis market benchmarks</p>
+    <h2>Indicative monthly salary ranges</h2>
+    <p class="intro">Gross monthly figures in Tunisian dinars (TND), benchmarked for a small boutique estate near Tunis. Ranges are approximate and move with experience, season and negotiation.</p>
+    <div class="salwrap">
+      <table class="saltable">
+        <thead><tr><th>Position</th><th>Gross / month (TND)</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td class="role">Propriétaire / CEO — Lilia</td><td class="amt na">Profit / dividends</td><td class="nt">Owners are usually paid through profit share, not payroll. As a salaried DG the benchmark would be ~3,000–6,000+.</td></tr>
+          <tr><td class="role">Directrice · Offre &amp; Opérations — Elyssa</td><td class="amt">3,000 – 5,500</td><td class="nt">Founder; figure is the market benchmark for hiring an equivalent GM / experience director.</td></tr>
+          <tr><td class="role">Responsable F&amp;B — Jérôme</td><td class="amt na">Service fee</td><td class="nt">Prestataire, not salaried — paid via management fee / revenue share. Reference exec-chef / F&amp;B salary: 2,000–3,500.</td></tr>
+          <tr><td class="role">Responsable Marketing &amp; Commercial</td><td class="amt">2,500 – 4,500</td><td class="nt">Plus a variable / commission component (see below). Or a consultant day-rate if filled as a prestataire.</td></tr>
+          <tr><td class="role">Achats &amp; Stocks — Aymen</td><td class="amt">1,200 – 2,200 <span class="estbadge">est.</span></td><td class="nt">Purchasing + finance liaison; rises with experience.</td></tr>
+          <tr><td class="role">Coordinatrice d'Accueil</td><td class="amt">900 – 1,600</td><td class="nt">Broader than a basic receptionist (reservations + housekeeping supervision).</td></tr>
+          <tr><td class="role">Community Manager</td><td class="amt">800 – 1,500</td><td class="nt">Junior role.</td></tr>
+          <tr><td class="role">Spa &amp; Wellness Manager <span style="color:var(--muted);font-weight:600;">· Year 2</span></td><td class="amt">1,200 – 2,500 <span class="estbadge">est.</span></td><td class="nt">Local spa-management data is thin; estimate from comparable supervisory roles.</td></tr>
+          <tr><td class="role">Équipe Cuisine</td><td class="amt">500 – 1,600</td><td class="nt">Commis 500–800; cuisinier / chef de partie 900–1,600.</td></tr>
+          <tr><td class="role">Housekeeping ×2</td><td class="amt">530 – 800</td><td class="nt">At or just above SMIG (528 TND).</td></tr>
+          <tr><td class="role">Équipe Spa <span style="color:var(--muted);font-weight:600;">· future</span></td><td class="amt">600 – 1,200 <span class="estbadge">est.</span></td><td class="nt">Therapists / esthéticiennes.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="twocol" style="margin-top:16px;">
+      <div class="cc">
+        <h3>How to read these</h3>
+        <p>Figures are gross, before the employee's CNSS (~9.18%) and progressive income tax — net lands around 75–85% of gross at these levels. On top of gross, budget ~17% employer CNSS plus minor levies. Transport and meal allowances, and a 13th-month bonus, are widespread and sit on top.</p>
+      </div>
+      <div class="cc">
+        <h3>For context</h3>
+        <p>Tunisia's minimum wage (SMIG) is 528 TND/month (48h, 2025–26); the national average gross is roughly 1,200–1,570 TND. Hospitality is seasonal, so consider core + seasonal contracts. For key roles, pitching base slightly above market aids retention given the quiet-luxury positioning.</p>
+      </div>
+    </div>
+    <p style="font-size:.78rem;color:var(--muted);margin-top:16px;">Sources: Tanitjobs (Tunisia hospitality &amp; sector salary guides), Rivermate, Tunisian SMIG guides 2025–26. Approximate — validate with local recruiters / the siège payroll office before hiring.</p>
+  </div>
+</section>
+
+<!-- incentives -->
+<section class="band" aria-label="Incentive programs">
+  <div class="wrap">
+    <p class="eyebrow">Incentives — bringing in big-event revenue</p>
+    <h2>Three programs for event-driven revenue</h2>
+    <p class="intro">Hospitality best practice: split reward into a secure base plus a variable tied to results; pay commission on margin, never the headline price; blend individual and team metrics; keep the maths transparent and audited; and pay promptly on collected revenue. Below are three distinct programs targeting the people who bring in weddings, team-buildings and large events — run alone or layered.</p>
+
+    <div class="inc">
+      <div class="inchead"><span class="incletter">A</span><span class="inctitle">Direct event-sales commission</span></div>
+      <p class="incidea">Rewards the person who sources and signs each new big event.</p>
+      <div class="incrow"><span class="k">Targets</span><span class="v">Responsable Marketing &amp; Commercial (primary); the coordinator for inbound conversions.</span></div>
+      <div class="incrow"><span class="k">How it works</span><span class="v">A commission on the event's gross margin — not the headline price — so you never pay on pass-through F&amp;B cost or taxes. Indicative: ~8–12% of margin (or ~5% of net contract value), tiered so cumulative quarterly volume unlocks a higher rate. New business only.</span></div>
+      <div class="incrow"><span class="k">Guardrails</span><span class="v">Paid after the client has settled in full; commission on margin to protect profit; no payout if discounting breaches a floor; documented as taxable pay (CNSS / IRPP).</span></div>
+      <div class="incrow"><span class="k">Best for</span><span class="v">Giving the commercial role direct line-of-sight between effort and earnings.</span></div>
+      <div class="incrow tradeoff"><span class="k">Trade-off</span><span class="v">Individual focus can sideline the delivery team and tempt over-discounting to close.</span></div>
+    </div>
+
+    <div class="inc">
+      <div class="inchead"><span class="incletter">B</span><span class="inctitle">Event profit-share pool</span></div>
+      <p class="incidea">Rewards everyone who delivered the event, not just who sold it.</p>
+      <div class="incrow"><span class="k">Targets</span><span class="v">The full event team — commercial lead, coordinator, kitchen / F&amp;B, service, housekeeping.</span></div>
+      <div class="incrow"><span class="k">How it works</span><span class="v">Fund a pool with a fixed slice of each qualifying event's gross margin (~3–5%), distributed by weighting — a larger share to the seller and the on-site event lead, smaller shares across delivery roles. Keep the department payout fixed but give top contributors more.</span></div>
+      <div class="incrow"><span class="k">Guardrails</span><span class="v">Only events above a set size; full payout unlocks only if the event clears a guest-satisfaction / review threshold — tying reward to quality, not just the sale. Self-funded from margin; quarterly payout; transparent tracking.</span></div>
+      <div class="incrow"><span class="k">Best for</span><span class="v">Making the whole event machine pull together, protecting delivery quality, and aiding cross-department retention.</span></div>
+      <div class="incrow tradeoff"><span class="k">Trade-off</span><span class="v">Dilutes the individual seller's incentive; needs clean margin accounting and fair weighting.</span></div>
+    </div>
+
+    <div class="inc">
+      <div class="inchead"><span class="incletter">C</span><span class="inctitle">"Apporteur d'affaires" referral bounty</span></div>
+      <p class="incidea">Rewards any employee who brings a lead that converts — no need to close it.</p>
+      <div class="incrow"><span class="k">Targets</span><span class="v">Every employee (gardener, housekeeper, server, front desk) — and optionally trusted external partners.</span></div>
+      <div class="incrow"><span class="k">How it works</span><span class="v">A flat finder's fee per converted big event — e.g. ~200–500 TND for a signed-and-paid wedding or team-building, scaled to size (or a small 1–2%). The referrer registers the lead; the commercial lead closes it.</span></div>
+      <div class="incrow"><span class="k">Guardrails</span><span class="v">Lead must be net-new and logged before it's otherwise in the pipeline (first-to-register avoids disputes); paid on signed-and-collected contract; simple lead log; documented for tax.</span></div>
+      <div class="incrow"><span class="k">Best for</span><span class="v">Cheaply widening the funnel and leveraging staff's local word-of-mouth — culturally powerful for Tunisian weddings, where personal networks drive bookings. Every role can earn.</span></div>
+      <div class="incrow tradeoff"><span class="k">Trade-off</span><span class="v">Smaller per-event motivation; needs disciplined lead tracking; doesn't reward closing or delivery skill.</span></div>
+    </div>
+
+    <div class="recbox">
+      <h3>Recommended for Agrumia</h3>
+      <p>Layer them rather than choose one. At launch, run <strong>C</strong> (referral bounty for all staff) alongside <strong>A</strong> (commission for the Marketing &amp; Commercial lead) — cheap, inclusive, and tied directly to the role whose job is revenue. As event volume builds, add <strong>B</strong> (a modest team pool behind a quality gate) so the delivery team shares the upside and stays aligned. Across all three: pay on collected revenue, commission on margin rather than headline price, keep the calculation transparent and audited (not a shared spreadsheet), and document every payout for CNSS / IRPP through the siège.</p>
+    </div>
+    <p style="font-size:.78rem;color:var(--muted);margin-top:16px;">Best-practice sources: Mews, Oaky, Canary Technologies, Frontline Performance Group, Emersion Wellness, Tripleseat, LOVU.</p>
   </div>
 </section>
 
